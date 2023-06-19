@@ -1,5 +1,5 @@
 "use client";
-
+// for now see this code as the base of dynamic forms. Suggest me changes and also prepare a general schema for me for next operation
 import {
   TextField,
   Button,
