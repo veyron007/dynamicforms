@@ -10,6 +10,13 @@ import {
   FormControlLabel,
   Checkbox,
 } from "@mui/material";
+
+import dayjs from "dayjs";
+import { DemoContainer, DemoItem } from "@mui/x-date-pickers/internals/demo";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
+import { DatePicker } from "@mui/x-date-pickers/DatePicker";
+// import { MuiTelInput } from 'mui-tel-input'
 import { useForm } from "react-hook-form";
 // import { DevTool } from "@hookform/devtools";
 import { useEffect, useState } from "react";
@@ -21,9 +28,9 @@ import InputLabel from "@mui/material/InputLabel";
 // import FormLabel from '@mui/material/FormLabel';
 
 export default function FormConfig() {
-  //   const form = useForm();
-  //   const { register, control } = form;
-
+  const form = useForm();
+  const { register, control } = form;
+  //   const [telephone, setTelephone] = useState("");
   const [formData] = useState([
     [
       {
@@ -120,6 +127,11 @@ export default function FormConfig() {
         name: "phoneNumber",
         required: true,
         options: [],
+        validation: {
+          minLength: 2,
+          maxLength: 15,
+          pattern: "^[+]?[(]?[0-9]{3}[)]?[-\\s.]?[0-9]{3}[-\\s.]?[0-9]{4,6}$",
+        },
       },
       {
         type: "text",
@@ -203,21 +215,286 @@ export default function FormConfig() {
         options: [],
       },
     ],
+
     [
       {
         type: "text",
-        label: "First Name",
-        name: "firstName",
+        label: "Full Name",
+        name: "fullName",
         required: true,
-        validation: { maxLength: 20, minLength: 3 },
+        options: [],
+      },
+      {
+        type: "email",
+        label: "Email",
+        name: "email",
+        required: true,
+        options: [],
+      },
+      {
+        type: "tel",
+        label: "Phone Number",
+        name: "phoneNumber",
+        required: true,
+        options: [],
+        validation: {
+          minLength: 2,
+          maxLength: 15,
+          pattern: "^[+]?[(]?[0-9]{3}[)]?[-\\s.]?[0-9]{3}[-\\s.]?[0-9]{4,6}$",
+        },
+      },
+      {
+        type: "text",
+        label: "Subject",
+        name: "subject",
+        required: true,
+        options: [],
+      },
+      {
+        type: "textarea",
+        label: "Message",
+        name: "message",
+        required: true,
+        options: [],
+      },
+    ],
+    [
+      {
+        type: "text",
+        label: "Full Name",
+        name: "fullName",
+        required: true,
+        options: [],
+      },
+      {
+        type: "email",
+        label: "Email",
+        name: "email",
+        required: true,
+        options: [],
+      },
+      {
+        type: "tel",
+        label: "Phone Number",
+        name: "phoneNumber",
+        required: true,
+        options: [],
+        validation: {
+          minLength: 2,
+          maxLength: 15,
+          pattern: "^[+]?[(]?[0-9]{3}[)]?[-\\s.]?[0-9]{3}[-\\s.]?[0-9]{4,6}$",
+        },
+      },
+      {
+        type: "textarea",
+        label: "Cover Letter",
+        name: "coverLetter",
+        required: true,
+        options: [],
+      },
+      {
+        type: "file",
+        label: "Resume/CV",
+        name: "resume",
+        required: true,
+        options: [],
+      },
+    ],
+    [
+      {
+        type: "text",
+        label: "Full Name",
+        name: "fullName",
+        required: true,
+        options: [],
+      },
+      {
+        type: "email",
+        label: "Email",
+        name: "email",
+        required: true,
+        options: [],
+      },
+      {
+        type: "tel",
+        label: "Phone Number",
+        name: "phoneNumber",
+        required: true,
+        options: [],
+        validation: {
+          minLength: 2,
+          maxLength: 15,
+          pattern: "^[+]?[(]?[0-9]{3}[)]?[-\\s.]?[0-9]{3}[-\\s.]?[0-9]{4,6}$",
+        },
+      },
+      {
+        type: "select",
+        label: "Service/Department",
+        name: "serviceDepartment",
+        options: [
+          { label: "Customer Service", value: "customerService" },
+          { label: "IT Support", value: "itSupport" },
+          { label: "Product Development", value: "productDevelopment" },
+          { label: "Other", value: "other" },
+        ],
+        required: true,
+      },
+      {
+        type: "textarea",
+        label: "Message",
+        name: "message",
+        required: true,
+        options: [],
+      },
+    ],
+    [
+      {
+        type: "text",
+        label: "Full Name",
+        name: "fullName",
+        required: true,
+        options: [],
+      },
+      {
+        type: "email",
+        label: "Email",
+        name: "email",
+        required: true,
+        options: [],
+      },
+      {
+        type: "tel",
+        label: "Phone Number",
+        name: "phoneNumber",
+        required: true,
+        options: [],
+        validation: {
+          minLength: 2,
+          maxLength: 15,
+          pattern: "^[+]?[(]?[0-9]{3}[)]?[-\\s.]?[0-9]{3}[-\\s.]?[0-9]{4,6}$",
+        },
+      },
+      {
+        type: "text",
+        label: "Event Name",
+        name: "eventName",
+        required: true,
+        options: [],
+      },
+      {
+        type: "date",
+        label: "Event Date",
+        name: "eventDate",
+        required: true,
+        options: [],
+      },
+    ],
+    [
+      {
+        type: "text",
+        label: "Full Name",
+        name: "fullName",
+        required: true,
+        options: [],
+      },
+      {
+        type: "email",
+        label: "Email",
+        name: "email",
+        required: true,
+        options: [],
+      },
+      {
+        type: "tel",
+        label: "Phone Number",
+        name: "phoneNumber",
+        required: true,
+        options: [],
+        validation: {
+          minLength: 2,
+          maxLength: 15,
+          pattern: "^[+]?[(]?[0-9]{3}[)]?[-\\s.]?[0-9]{3}[-\\s.]?[0-9]{4,6}$",
+        },
+      },
+      {
+        type: "radio",
+        label: "How did you hear about us?",
+        name: "heardAboutUs",
+        options: [
+          { label: "Search engine", value: "searchEngine" },
+          { label: "Social media", value: "socialMedia" },
+          { label: "Word of mouth", value: "wordOfMouth" },
+          { label: "Other", value: "other" },
+        ],
+        required: true,
+      },
+      {
+        type: "checkbox",
+        label:
+          "Which of the following products/services have you used or are interested in?",
+        name: "interests",
+        required: true,
+        options: [
+          { label: "Product A", value: "productA" },
+          { label: "Product B", value: "productB" },
+          { label: "Service A", value: "serviceA" },
+          { label: "Service B", value: "serviceB" },
+        ],
+      },
+    ],
+    [
+      {
+        type: "text",
+        label: "Full Name",
+        name: "fullName",
+        required: true,
+        options: [],
+      },
+      {
+        type: "email",
+        label: "Email",
+        name: "email",
+        required: true,
+        options: [],
+      },
+      {
+        type: "tel",
+        label: "Phone Number",
+        name: "phoneNumber",
+        required: true,
+        options: [],
+        validation: {
+          minLength: 2,
+          maxLength: 15,
+          pattern: "^[+]?[(]?[0-9]{3}[)]?[-\\s.]?[0-9]{3}[-\\s.]?[0-9]{4,6}$",
+        },
+      },
+      {
+        type: "text",
+        label: "Course Name",
+        name: "courseName",
+        required: true,
+        options: [],
+      },
+      {
+        type: "number",
+        label: "Student ID",
+        name: "studentId",
+        required: true,
         options: [],
       },
       {
         type: "text",
-        label: "Last Name",
-        name: "lastName",
+        label: "Professor Name",
+        name: "professorName",
         required: true,
-        validation: { maxLength: 20, minLength: 3 },
+        options: [],
+      },
+      {
+        type: "textarea",
+        label: "Question/Comment",
+        name: "questionComment",
+        required: true,
         options: [],
       },
     ],
@@ -258,7 +535,7 @@ export default function FormConfig() {
           alignItems: "center",
         }}
       >
-        {Array(6)
+        {Array(formData.length)
           .fill(0)
           .map((el, index) => {
             return (
@@ -301,6 +578,17 @@ export default function FormConfig() {
                     required={required}
                     variant="outlined"
                   />
+                ) : type == "textarea" ? (
+                  <TextField
+                    id="standard-multiline-static"
+                    name={name}
+                    required={required}
+                    label={label}
+                    multiline
+                    maxRows={4}
+                    defaultValue=""
+                    variant="standard"
+                  />
                 ) : type == "password" ? (
                   <TextField
                     id="outlined-password-input"
@@ -308,6 +596,30 @@ export default function FormConfig() {
                     name={name}
                     required={required}
                     type="password"
+                  />
+                ) : type == "date" ? (
+                  <LocalizationProvider dateAdapter={AdapterDayjs}>
+                    <DemoContainer components={["DatePicker"]}>
+                      <DemoItem label={label}>
+                        <DatePicker defaultValue={dayjs("2022-04-17")} />
+                      </DemoItem>
+                    </DemoContainer>
+                  </LocalizationProvider>
+                ) : type == "tel" ? (
+                  <TextField
+                    id="outlined-basic"
+                    name={name}
+                    label={label}
+                    required={required}
+                    variant="outlined"
+                  />
+                ) : type == "number" ? (
+                  <TextField
+                    id="outlined-basic"
+                    name={name}
+                    required={required}
+                    label={label}
+                    variant="standard"
                   />
                 ) : type == "select" ? (
                   <>
@@ -361,7 +673,7 @@ export default function FormConfig() {
           }
         )}
         <Button type="submit" variant="contained" color="primary">
-          Submit
+          SUBMIT
         </Button>
         {/* <DevTool control={control} /> */}
       </Box>
