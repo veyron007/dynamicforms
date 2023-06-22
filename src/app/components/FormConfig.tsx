@@ -27,6 +27,8 @@ import InputLabel from "@mui/material/InputLabel";
 // import FormControl from '@mui/material/FormControl';
 // import FormLabel from '@mui/material/FormLabel';
 
+
+
 export default function FormConfig() {
   const form = useForm();
   const { register, control } = form;
@@ -500,6 +502,9 @@ export default function FormConfig() {
     ],
   ]);
 
+
+  
+
   const SubmitHandler = (event: React.FormEvent<HTMLFormElement>): void => {
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
@@ -621,7 +626,17 @@ export default function FormConfig() {
                     label={label}
                     variant="standard"
                   />
-                ) : type == "select" ? (
+                ) : type == "file" ? (
+                    <TextField
+                      id="outlined-basic"
+                      name={name}
+                    //   label={label}
+                      type="file"
+                      required={required}
+                      variant="outlined"
+                    />
+                  ) :
+                type == "select" ? (
                   <>
                     <InputLabel id="demo-simple-select-label">
                       {label}
